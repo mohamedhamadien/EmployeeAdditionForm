@@ -8,8 +8,8 @@ namespace EmployeeAdditionForm.Domain.Interfaces
 {
     public interface IUnitOfWork : IDisposable 
     {
-        IEmployeeRepository EmployeeRepository { get; }
-        IEmployeeRoleRepository EmployeeRoleRepository { get; }
+        IEmployeeRepository Employees { get; }
+        IEmployeeRoleRepository Roles { get; }
         Task<int> SaveChangesAsync();
 
     }

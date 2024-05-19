@@ -1,5 +1,6 @@
 ﻿using EmployeeAdditionForm.Domain.Entities;
 using EmployeeAdditionForm.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,11 @@ namespace EmployeeAdditionForm.Infrastructure.Repositories
             await _dbContext.Employees.AddAsync(employee);
         
             return employee;
+        }
+
+        public async Task<IReadOnlyList<Employee>> GetAllAsync()
+        {
+           return await _dbContext.Employees.Include(x => x.Role).ToListAsync();
         }
     }
 }

@@ -19,9 +19,9 @@ namespace EmployeeAdditionForm.Infrastructure.Repositories
         }
 
 
-        public IEmployeeRepository EmployeeRepository => _employeeRepository ?? new EmployeeRepository(_dbContext);
+        public IEmployeeRepository Employees => _employeeRepository ?? new EmployeeRepository(_dbContext);
 
-        public IEmployeeRoleRepository EmployeeRoleRepository => _roleRepository ?? new EmployeeRoleRepository(_dbContext);
+        public IEmployeeRoleRepository Roles => _roleRepository ?? new EmployeeRoleRepository(_dbContext);
 
         public void Dispose()
         {

@@ -10,5 +10,6 @@ namespace EmployeeAdditionForm.Domain.Interfaces
     public interface IEmployeeRepository
     {
         Task<Employee> AddAsync(Employee employee);
+        Task<IReadOnlyList<Employee>> GetAllAsync();
     }
 }
