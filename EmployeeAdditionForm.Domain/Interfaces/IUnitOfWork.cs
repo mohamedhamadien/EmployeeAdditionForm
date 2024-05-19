@@ -9,6 +9,7 @@ namespace EmployeeAdditionForm.Domain.Interfaces
     public interface IUnitOfWork : IDisposable 
     {
         IEmployeeRepository EmployeeRepository { get; }
+        IEmployeeRoleRepository EmployeeRoleRepository { get; }
         Task<int> SaveChangesAsync();
 
     }

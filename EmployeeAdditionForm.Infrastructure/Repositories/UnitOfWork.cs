@@ -11,14 +11,17 @@ namespace EmployeeAdditionForm.Infrastructure.Repositories
     {
         private readonly EmployeeAdditionFormDbContext _dbContext;
 
+        private EmployeeRepository _employeeRepository;
+        private EmployeeRoleRepository _roleRepository;
         public UnitOfWork(EmployeeAdditionFormDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        private EmployeeRepository _employeeRepository;
 
-       public IEmployeeRepository EmployeeRepository => _employeeRepository ?? new EmployeeRepository(_dbContext);
+        public IEmployeeRepository EmployeeRepository => _employeeRepository ?? new EmployeeRepository(_dbContext);
+
+        public IEmployeeRoleRepository EmployeeRoleRepository => _roleRepository ?? new EmployeeRoleRepository(_dbContext);
 
         public void Dispose()
         {
