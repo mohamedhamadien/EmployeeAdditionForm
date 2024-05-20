@@ -23,7 +23,7 @@ namespace EmployeeAdditionForm.Application
             services.AddFluentValidation(conf => {
                 conf.DisableDataAnnotationsValidation = true;
                 conf.ImplicitlyValidateChildProperties = true;
-                conf.ValidatorOptions.CascadeMode = FluentValidation.CascadeMode.Stop;
+                //conf.ValidatorOptions.CascadeMode = FluentValidation.CascadeMode.Stop;
                 conf.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             });
           //  services.AddValidatorsFromAssembly(assembly);
