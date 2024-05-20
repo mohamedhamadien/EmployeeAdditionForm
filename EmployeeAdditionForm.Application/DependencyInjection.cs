@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,15 @@ namespace EmployeeAdditionForm.Application
             services.AddMediatR(configuration =>
                 configuration.RegisterServicesFromAssembly(assembly));
 
-            services.AddValidatorsFromAssembly(assembly);
+            // Register Fluent Validation service
+            services.AddFluentValidation(conf => {
+                conf.DisableDataAnnotationsValidation = true;
+                conf.ImplicitlyValidateChildProperties = true;
+                conf.ValidatorOptions.CascadeMode = FluentValidation.CascadeMode.Stop;
+                conf.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            });
+          //  services.AddValidatorsFromAssembly(assembly);
+
             // Register AutoMapper Services
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

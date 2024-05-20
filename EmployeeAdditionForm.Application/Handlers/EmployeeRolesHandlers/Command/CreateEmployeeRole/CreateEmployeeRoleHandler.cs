@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EmployeeAdditionForm.Application.Handlers.EmployeeHandlers.DTO;
+using EmployeeAdditionForm.Application.Handlers.EmployeeRolesHandlers.DTO;
 using EmployeeAdditionForm.Domain.Entities;
 using EmployeeAdditionForm.Domain.Interfaces;
 using MediatR;
@@ -11,22 +12,22 @@ using System.Threading.Tasks;
 
 namespace EmployeeAdditionForm.Application.Handlers.EmployeeHandlers.Command.CreateEmployee
 {
-    public class CreateEmployeeHandler : IRequestHandler<CreateEmployeeCommand, Unit>
+    public class CreateEmployeeRoleHandler : IRequestHandler<CreateEmployeeRoleCommad, EmployeeRoleDTO>
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _ctx;
 
-        public CreateEmployeeHandler(IMapper mapper, IUnitOfWork ctx)
+        public CreateEmployeeRoleHandler(IMapper mapper, IUnitOfWork ctx)
         {
             _mapper = mapper;
             _ctx = ctx;
         }
-        public async Task<Unit> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
+        public async Task<EmployeeRoleDTO> Handle(CreateEmployeeRoleCommad request, CancellationToken cancellationToken)
         {
-           var employee =  _mapper.Map<Employee>(request);
-            _ctx.Employees.AddAsync(employee);
-            await _ctx.SaveChangesAsync();
-            return Unit.Task.Result;
+           var employee =  _mapper.Map<EmployeeRole>(request);
+            _ctx.Roles.AddAsync(employee);
+           await _ctx.SaveChangesAsync();
+            return _mapper.Map(employee,new EmployeeRoleDTO());
         }
     }
 }

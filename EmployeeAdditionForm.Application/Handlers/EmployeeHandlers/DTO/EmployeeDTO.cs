@@ -11,14 +11,14 @@ namespace EmployeeAdditionForm.Application.Handlers.EmployeeHandlers.DTO
     public class EmployeeDTO
     {
         public string Name { get; set; }
-        public EmployeeRoleDTO Role { get; set; }
+        public EmployeeRolesDTO Role { get; set; }
         public Gender Gender { get; set; }
         public bool IsFirsetAppoinment { get; set; }
         public DateTime StartDate { get; set; }
         public string Note { get; set; }
     }
 
-    public class EmployeeRoleDTO
+    public class EmployeeRolesDTO
     {
         public string Name { get; set; }
     }

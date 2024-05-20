@@ -14,8 +14,9 @@ namespace EmployeeAdditionForm.Application.Handlers.EmployeeHandlers.Mapper
     {
         public EmplyeeMapper()
         {
-            CreateMap<CreateEmployeeCommad, Employee>();
+            CreateMap<CreateEmployeeCommand, Employee>();
             CreateMap<Employee, EmployeeDTO>();
+            CreateMap<EmployeeRole, EmployeeRolesDTO>();
         }
     }
 }

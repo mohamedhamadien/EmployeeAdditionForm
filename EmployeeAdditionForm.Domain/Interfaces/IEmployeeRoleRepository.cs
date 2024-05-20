@@ -10,6 +10,8 @@ namespace EmployeeAdditionForm.Domain.Interfaces
     public interface IEmployeeRoleRepository
     {
         Task<EmployeeRole> AddAsync(EmployeeRole employee);
+        Task<List<EmployeeRole>> GetAllAsync();
+        bool IsExisted(Guid id);
 
     }
 }
