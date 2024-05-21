@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EmployeeAdditionForm.Application.Handlers.EmployeeHandlers.DTO;
+using EmployeeAdditionForm.Domain.Entities;
 using EmployeeAdditionForm.Domain.Interfaces;
 using MediatR;
 using System;
@@ -23,9 +24,17 @@ namespace EmployeeAdditionForm.Application.Handlers.EmployeeHandlers.Queries.Get
 
         public async Task<IReadOnlyList<EmployeeDTO>> Handle(GetAllEmployeeQuery request, CancellationToken cancellationToken)
         {
-            var allEmployees = await _ctx.Employees.GetAllAsync();
-            var Data = _mapper.Map<List<EmployeeDTO>>(allEmployees);
-            return Data;
+            try
+            {
+                var allEmployees = await _ctx.Employees.GetAllAsync();
+                var Data = _mapper.Map<List<EmployeeDTO>>(allEmployees);
+                return Data;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error occurred while retrieve employees.");
+            }
         }
     }
 }

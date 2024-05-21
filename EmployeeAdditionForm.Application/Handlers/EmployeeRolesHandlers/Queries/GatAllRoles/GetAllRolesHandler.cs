@@ -25,16 +25,18 @@ namespace EmployeeAdditionForm.Application.Handlers.EmployeeRolesHandlers.Querie
         }
 
         public async Task<ICollection<EmployeeRoleDTO>> Handle(GetAllRolesQuery request, CancellationToken cancellationToken)
-        {
-
+        {     
+            try
+            {
                 var allRoles = await _ctx.Roles.GetAllAsync();
-             //   allRoles.ToList();
-                //var x = _mapper.Map<EmployeeRoleDTO>(allRoles[0]);
-                //return _mapper.Map(allRoles, new List<EmployeeRoleDTO>());
-
                 var Data = _mapper.Map<List<EmployeeRoleDTO>>(allRoles);
                 return Data;
-          
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error occurred while retrieve roles.");
+            }
 
         }
     }

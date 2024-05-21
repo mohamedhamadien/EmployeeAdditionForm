@@ -23,10 +23,19 @@ namespace EmployeeAdditionForm.Application.Handlers.EmployeeHandlers.Command.Cre
         }
         public async Task<Unit> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
         {
-           var employee =  _mapper.Map<Employee>(request);
-            _ctx.Employees.AddAsync(employee);
-            await _ctx.SaveChangesAsync();
-            return Unit.Task.Result;
+            try
+            {
+                var employee = _mapper.Map<Employee>(request);
+                _ctx.Employees.AddAsync(employee);
+                await _ctx.SaveChangesAsync();
+                return Unit.Task.Result;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error occurred while creating employee.");
+            }
+           
         }
     }
 }

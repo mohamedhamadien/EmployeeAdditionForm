@@ -24,10 +24,18 @@ namespace EmployeeAdditionForm.Application.Handlers.EmployeeHandlers.Command.Cre
         }
         public async Task<EmployeeRoleDTO> Handle(CreateEmployeeRoleCommad request, CancellationToken cancellationToken)
         {
-           var employee =  _mapper.Map<EmployeeRole>(request);
-            _ctx.Roles.AddAsync(employee);
-           await _ctx.SaveChangesAsync();
-            return _mapper.Map(employee,new EmployeeRoleDTO());
+            try
+            {
+                var employee = _mapper.Map<EmployeeRole>(request);
+                _ctx.Roles.AddAsync(employee);
+                await _ctx.SaveChangesAsync();
+                return _mapper.Map(employee, new EmployeeRoleDTO());
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error occurred while creating role.");
+            }
         }
     }
 }
