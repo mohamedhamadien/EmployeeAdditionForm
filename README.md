@@ -10,7 +10,7 @@ This project is a backend API built using .NET 6 with a clean architecture and C
 - Unit of Work Pattern
 - AutoMapper
 - MediatR
-- FluentValidation
+- FluentValidation for backend validation 
 - Option Design Pattern
 
 ## Usage
