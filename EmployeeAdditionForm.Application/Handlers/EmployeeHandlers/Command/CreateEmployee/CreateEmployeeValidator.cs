@@ -18,6 +18,7 @@ namespace EmployeeAdditionForm.Application.Handlers.EmployeeHandlers.Command.Cre
 
             RuleFor(x => x.Name)
                 .NotNull().NotEmpty().WithMessage("Employee Name Required")
+                .MaximumLength(100).WithMessage("Name cannot exceed 100 characters.")
                 .Matches(@"^[^<>]+$").WithMessage("Employee Name Not Valid");
             
             RuleFor(x => x.RoleId)
@@ -40,6 +41,7 @@ namespace EmployeeAdditionForm.Application.Handlers.EmployeeHandlers.Command.Cre
             
             RuleFor(x => x.Note)
                .Matches(@"^[^<>]+$").WithMessage("Note Not Valid")
+                .MaximumLength(500).WithMessage("Note cannot exceed 500 characters.")
                .When(s => !string.IsNullOrEmpty(s.Note));
         }
     }
